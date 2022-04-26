@@ -15,6 +15,7 @@ import Menu from '@mui/material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 
+
 export default function Navbar() {
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -36,18 +37,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
+
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -96,12 +86,19 @@ export default function Navbar() {
                 <Link to="/newblog">
                 <MenuItem onClick={handleClose}>NewBlog</MenuItem>
                 </Link>
-                
+                <Link to="/">
+                <MenuItem onClick={handleChange} label={auth ? 'Logout' : 'Login'} >Logout</MenuItem>
+                </Link> 
               </Menu>
+
             </div>
           )}
         </Toolbar>
       </AppBar>
     </Box>
+    
+    
+    
+    
   );
 }
