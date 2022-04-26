@@ -3,9 +3,17 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Button from "@mui/material/Button";
+import { useAuthContext } from "../contexts/AuthContext";
 
-export default function NewBlog({blog,setBlog}) {
-  //const handleClick = () => {};
+export default function NewBlog() {
+
+  const {blog, setBlog}= useAuthContext()
+
+  const handleNewBlogSubmit =(e)=>{
+    e.preventDefault();
+    console.log(blog)
+    //AddBlog
+  }
 
   const handleChange=(e)=>{
     e.preventDefault();
@@ -23,13 +31,14 @@ export default function NewBlog({blog,setBlog}) {
       }}
       noValidate
       autoComplete="off"
+      onSubmit={handleNewBlogSubmit}
     >
       <TextField
         id="outlined-basic"
         label="Title"
         variant="outlined"
         required
-        name="username:"
+        name="title"
         value={blog.title}
         onChange={handleChange}
       />
@@ -39,7 +48,7 @@ export default function NewBlog({blog,setBlog}) {
         label="Image URL"
         variant="outlined"
         required
-        name="url:"
+        name="url"
         value={blog.url}
         onChange={handleChange}
       />
@@ -50,7 +59,7 @@ export default function NewBlog({blog,setBlog}) {
         aria-label="maximum height"
         placeholder="TEXT"
         style={{ width: 200, height: 300 }}
-        name="text:"
+        name="text"
         value={blog.text}
         onChange={handleChange}
       />
@@ -59,7 +68,6 @@ export default function NewBlog({blog,setBlog}) {
         variant="contained"
         type="submit"
         value="Submit"
-        /* onClick={handleClick} */
       >
         Submit
       </Button>
